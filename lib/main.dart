@@ -42,10 +42,10 @@ class EventListState extends State<EventList>{
               isThreeLine: true,
               title: Text("8.00 to 9.00", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
               subtitle: Text("Discrete Mathematics\n\nLT-3", style: TextStyle(color: Colors.white),),
-              trailing: new Icon(
-                Icons.notifications_none,
+              trailing: new IconButton(
+                icon: Icon(Icons.notifications_none),
                 color: Colors.white,
-               // onPressed: getNotification,
+                onPressed: getNotification,
               )
               ),
             ),
