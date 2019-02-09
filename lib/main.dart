@@ -15,12 +15,27 @@ class MainApp extends StatelessWidget{
   }
 }
 
-void calendarShow(){}
 void getNotification(){}
 class EventListState extends State<EventList>{
   String weekday = new DateFormat.EEEE().format(DateTime.now());
   String date = new DateFormat.MMMMd().format(DateTime.now());
- 
+  
+  void calendarShow(){
+    Navigator.of(context).push(
+      new MaterialPageRoute<void>(
+        builder: (BuildContext context){
+
+           return new Scaffold(
+             appBar: new AppBar(
+               title: const Text("Calendars"),
+             ),
+           ); 
+        }
+      ),
+    );
+  }
+
+
   Widget build(BuildContext context){
     return Scaffold(
       appBar: new AppBar(
