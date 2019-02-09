@@ -33,7 +33,9 @@ class EventListState extends State<EventList>{
           )
         ],
       ),
-      body: ListView(
+      body: Container(
+        color: Colors.lightBlue[900],
+        child: ListView(
           children: <Widget>[
             Container(
               color: Color(0xff4C9ACF),
@@ -150,6 +152,7 @@ class EventListState extends State<EventList>{
 
           ],
         ),
+      )
     );
   }
 
