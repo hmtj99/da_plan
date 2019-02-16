@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+
 void main() => runApp(MainApp());
 
 class MainApp extends StatelessWidget{
@@ -15,7 +19,79 @@ class MainApp extends StatelessWidget{
   }
 }
 
-void getNotification(){}
+class Calendar{
+  final String name;
+  final DocumentReference reference;
+
+  Calendar.fromMap(Map<String, dynamic>map,{this.reference})
+    : assert(map['name'] != null),
+      name = map['name'];
+
+  Calendar.fromSnapshot(DocumentSnapshot snapshot)
+  : this.fromMap(snapshot.data, reference:snapshot.reference);
+
+  @override
+  String toString() => "Calendar<$name>";
+}
+
+class Event{
+  String _title;
+  String _place;
+  DateTime _dateAndTime;
+  Calendar calendar;
+}
+
+class CalendarList extends StatefulWidget{
+  @override
+  CalendarListState createState() => new CalendarListState();
+}
+
+class CalendarListState extends State<CalendarList>{
+  Widget build(BuildContext context){
+      return StreamBuilder<QuerySnapshot>(
+        stream: Firestore.instance.collection('calendars').snapshots(),
+        builder: (context, snapshot){
+          if(!snapshot.hasData) return LinearProgressIndicator();
+          
+          return _buildList(context, snapshot.data.documents);
+        },
+      );
+  }
+
+  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot){
+    return ListView(
+      padding: const EdgeInsets.only(top:20.0),
+      children: snapshot.map((data) => _buildListItem(context,data)).toList(),
+    );
+  }
+
+  Widget _buildListItem(BuildContext context, DocumentSnapshot data){
+    final calendar = Calendar.fromSnapshot(data);
+
+    return Padding(
+      key:ValueKey(calendar.name),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        child: ListTile(
+          title: Text(calendar.name),
+          trailing:new Icon(
+            Icons.check
+          ),
+          onTap: (){
+
+          },
+        ),
+      ),
+    );
+
+  }
+}
+
+Widget getNotification(){}
 class EventListState extends State<EventList>{
   String weekday = new DateFormat.EEEE().format(DateTime.now());
   String date = new DateFormat.MMMMd().format(DateTime.now());
@@ -24,11 +100,11 @@ class EventListState extends State<EventList>{
     Navigator.of(context).push(
       new MaterialPageRoute<void>(
         builder: (BuildContext context){
-
            return new Scaffold(
              appBar: new AppBar(
                title: const Text("Calendars"),
              ),
+             body: CalendarList(),
            ); 
         }
       ),

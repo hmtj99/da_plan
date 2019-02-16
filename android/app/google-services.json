@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1073184904509",
+    "firebase_url": "https://daplan-4bd39.firebaseio.com",
+    "project_id": "daplan-4bd39",
+    "storage_bucket": "daplan-4bd39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073184904509:android:95a729d908989e90",
+        "android_client_info": {
+          "package_name": "com.example.daplan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073184904509-jumule59hv6cp3tm4jnob9uvb5cr4e2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI2LOfnRewsL9Qavzpetd9wT7JKN01LgU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
