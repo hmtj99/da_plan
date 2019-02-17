@@ -4,7 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 
-void main() => runApp(MainApp());
+
+Future main() async => runApp(MainApp());
 
 class MainApp extends StatelessWidget{
   @override
@@ -92,6 +93,9 @@ class CalendarListState extends State<CalendarList>{
 }
 
 Widget getNotification(){}
+
+
+
 class EventListState extends State<EventList>{
   String weekday = new DateFormat.EEEE().format(DateTime.now());
   String date = new DateFormat.MMMMd().format(DateTime.now());
@@ -112,9 +116,43 @@ class EventListState extends State<EventList>{
   }
 
 
+
+
+
   Widget build(BuildContext context){
+
+   //Appbar
     return Scaffold(
-      appBar: new AppBar(
+        drawer : Drawer(
+
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Text('Thanks for using our App', style : TextStyle(fontSize : 18.0, color :Colors.white)),
+                decoration: BoxDecoration(
+                  color: Color(0xff4C9ACF),
+                ),
+              ),
+
+
+              ListTile(
+                title: Text('My Account', style : TextStyle(fontSize : 18.0 , color : Color(0xff5A5388) )),
+                leading: const Icon(Icons.account_box),
+
+                onTap: () {
+
+                 Navigator.push(context, MaterialPageRoute(builder: (_) => My_Account()));
+
+                },
+              )
+            ],
+          ),
+        )
+
+
+        ,appBar: new AppBar(
         title: Text(weekday + ", " + date),
         actions: <Widget>[
           new IconButton(
@@ -249,8 +287,32 @@ class EventListState extends State<EventList>{
 
 }
 
-
 class EventList extends StatefulWidget{
   @override
   EventListState createState() => new EventListState();
+}
+
+
+
+class My_Account extends StatefulWidget{
+  @override
+  My_Account_State createState() => new My_Account_State();
+}
+
+
+class My_Account_State extends State<My_Account> {
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My Account'),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(height: 50.0,),
+      ),
+
+
+    );
+  }
+
 }
