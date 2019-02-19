@@ -13,6 +13,13 @@ class MyAccountState extends State<MyAccount> {
       appBar: AppBar(
         title: Text('My Account'),
       ),
+      body: Center(
+        child: FlatButton(
+          child: Text("Sign In"),
+          onPressed: sign_in,
+          color: Colors.green,
+        ),
+      ),  
       bottomNavigationBar: BottomAppBar(
         child: Container(height: 50.0,),
       ),
@@ -21,3 +28,5 @@ class MyAccountState extends State<MyAccount> {
   }
 
 }
+
+void sign_in(){}
