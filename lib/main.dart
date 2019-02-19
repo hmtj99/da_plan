@@ -1,3 +1,4 @@
+import 'package:da_plan/app_screens/account_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,6 +12,7 @@ class MainApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Scheduling App For Colleges",
       theme: new ThemeData(
         primaryColor: Colors.lightBlue[900],
@@ -143,7 +145,7 @@ class EventListState extends State<EventList>{
 
                 onTap: () {
 
-                 Navigator.push(context, MaterialPageRoute(builder: (_) => My_Account()));
+                 Navigator.push(context, MaterialPageRoute(builder: (_) => MyAccount()));
 
                 },
               )
@@ -293,26 +295,3 @@ class EventList extends StatefulWidget{
 }
 
 
-
-class My_Account extends StatefulWidget{
-  @override
-  My_Account_State createState() => new My_Account_State();
-}
-
-
-class My_Account_State extends State<My_Account> {
-
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My Account'),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(height: 50.0,),
-      ),
-
-
-    );
-  }
-
-}
